@@ -14,7 +14,7 @@ public class LanzadorTienda {
      
     public static void main (String [] args) throws ExcepcionesTiendaDeportes {
       Scanner sc = new Scanner(System.in);   
-        
+      //imprimimos un mensaje por pantalla y llamamos al metdo que se encarga de comprobar y de lazar todo si todo va bien.
       System.out.println("****************************************************************");
       System.out.println("**********Bienvenido a la tienda de deportes: Decimas***********");
       System.out.println("****************************************************************");
@@ -34,6 +34,7 @@ public class LanzadorTienda {
     private static void mostrarMenu(ArticuloDeportivo objeto) throws ExcepcionesTiendaDeportes {
         Scanner sc = new Scanner (System.in);
         int opcion = 0;
+        //se ejcutara como minimo una vez, hasta que usuario ponga 10 por teclado
         do{
 
 
@@ -80,7 +81,7 @@ public class LanzadorTienda {
                   case 6:
                       System.out.println("has escogido la opcion de mostrar el digito de control, es ");
                       double doubleCiudad, doubleTienda, doubleCodArticuloRed;
-
+                       //debemos convertir los string a double para hacer el calculo, sin errores
                       doubleCiudad =Double.parseDouble(objeto.getCiudad());
                       doubleTienda = Double.parseDouble(objeto.getTienda());
                       doubleCodArticuloRed = Double.parseDouble(objeto.getCodArticuloRed());
@@ -97,8 +98,6 @@ public class LanzadorTienda {
                       }else{
                           System.out.println("no puedes sumar numeros negativos");
                       }
-
-
                       break;
                   case 8:
                       System.out.println("has escogido la opción disminuir unidades");
@@ -115,7 +114,6 @@ public class LanzadorTienda {
                           System.out.println("AHORA tienes estas unidades: " +objeto.getUnidades());
                       }
                       break;
-
                   case 9:
                       System.out.println("has escogido la opción comprobar unidades");
                       objeto.getUnidades();
@@ -166,9 +164,10 @@ public class LanzadorTienda {
 
     }//final de leer teclado
     
-    private static int leerOpcion(){
-        Scanner sc = new Scanner (System.in);
-        System.out.println("introduce la opcion:");
+    private static int leerOpcion() throws ExcepcionesTiendaDeportes{
+        try{
+            Scanner sc = new Scanner (System.in);
+            System.out.println("introduce la opcion:");
         int opcion = sc.nextInt();
         
         if(opcion >0 && 10>=opcion){
@@ -180,6 +179,11 @@ public class LanzadorTienda {
             
             return 0;
         }
+        }catch(Exception e){
+            System.out.println("ha ocurrido un error con el tipo de dato");
+            return 0;
+        }
+        
     } //final de leerOpcion
     
     
@@ -234,13 +238,14 @@ public class LanzadorTienda {
     }
     
     private static void obtenerDatosArticulo() throws ExcepcionesTiendaDeportes {
-         System.out.println("introduce la descripcion");
+        //pedimos los datos necesarios usando el metodo creado por nosotros:
+    System.out.println("introduce la descripcion");
     String descripcion = leerTeclado();
     System.out.println("introduce el codigo de articulo: ");
     String codArticulo = leerTeclado();
     
         if(validarDescripcion(descripcion)&& codArticulo.length()==12){
-            //instanciamos el objeto
+            //instanciamos el objeto, si cumple la verificación.
             
             String ciudad = extraerDatosCiudad(codArticulo);
             String tienda = extraerDatosTienda(codArticulo);
@@ -248,9 +253,11 @@ public class LanzadorTienda {
             
             ArticuloDeportivo objeto = new ArticuloDeportivo(descripcion, codArticulo, ciudad, tienda, codArticuloRed);
             System.out.println(objeto.toString());
+            //llamamos al menu y le pasamos como parametro el objeto que acabamos de crear usando el constructor.
             mostrarMenu(objeto);
             
         }else{
+            //sino lo cumple mostrara esto:
             System.out.println("no se cumplen con alguno de los requisitos");
         } 
       } //final de obtenerDatosArticulo

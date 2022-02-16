@@ -18,11 +18,7 @@ public class ArticuloDeportivo {
     private String codArticuloRed;
     private String digitoControl;
     private static int unidades;
-    
-    
-    
-    //unidades, atributo contador
-    
+     
     //metodos getters y setters
 
     public String getDescripcion() {
@@ -64,8 +60,6 @@ public class ArticuloDeportivo {
     public void setCodArticuloRed(String codArticuloRed) {
         this.codArticuloRed = codArticuloRed;
     }
-
-    
 
     public String getDigitoControl() {
         return digitoControl;
