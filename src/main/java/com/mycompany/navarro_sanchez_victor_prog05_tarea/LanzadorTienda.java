@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.navarro_sanchez_victor_prog05_tarea;
+
 import java.util.Scanner;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Scanner;
  */
 public class LanzadorTienda {
      
-    public static void main (String [] args){
+    public static void main (String [] args) throws ExcepcionesTiendaDeportes {
       Scanner sc = new Scanner(System.in);   
         
       System.out.println("****************************************************************");
@@ -30,117 +31,113 @@ public class LanzadorTienda {
     
     //metodos
     
-    private static void mostrarMenu(ArticuloDeportivo objeto){
+    private static void mostrarMenu(ArticuloDeportivo objeto) throws ExcepcionesTiendaDeportes {
         Scanner sc = new Scanner (System.in);
-        try{
-          int opcion = 0;  
-          do{
-              
-                
-                System.out.println("MENU PRINCIPAL");
-                System.out.println("1. Ver el código completo del articulo");
-                System.out.println("2. Ver la descripcion del articulo");
-                System.out.println("3. Ver el codigo de la ciudad");
-                System.out.println("4. Ver el código de la tienda");
-                System.out.println("5. Ver el código del articulo");
-                System.out.println("6. Ver el digito de control");
-                System.out.println("7. Aumentar unidades");
-                System.out.println("8. Decrementar unidades");
-                System.out.println("9. Consultar unidades");
-                System.out.println("10. Salir");  
-                System.out.println(" ");
-               
-                //opcion = sc.nextInt();
-                opcion = leerOpcion();
-                
-                switch(opcion){
-                    case 1:
-                        System.out.println("has escodigo la opcion de mostrar articulo: ");
-                        System.out.println(objeto.getDescripcion());
-                        System.out.println("");
-                        break;
-                    case 2:
-                        System.out.println("has escodigo la opcion de mostrar la descripción del articulo");
-                        System.out.println(objeto.getDescripcion());
-                        System.out.println(" ");
-                        break;
-                        
-                    case 3:
-                        System.out.println("has escogido la opcion de mostrar el codigo de ciudad, es:");
-                        System.out.println(objeto.getCiudad());
-                        break;
-                    case 4:
-                        System.out.println("has escogido la opcion de mostrar el codigo de tienda, es:");
-                        System.out.println(objeto.getTienda());
-                        break;
-                    case 5:
-                        System.out.println("has escogido la opcion de mostrar el codigo reducido (6caracteres), es:");
-                        System.out.println(objeto.getCodArticuloRed());
-                        break;
-                    case 6:
-                        System.out.println("has escogido la opcion de mostrar el digito de control, es ");
-                        double doubleCiudad, doubleTienda, doubleCodArticuloRed;
-                        
-                        doubleCiudad =Double.parseDouble(objeto.getCiudad());
-                        doubleTienda = Double.parseDouble(objeto.getTienda());
-                        doubleCodArticuloRed = Double.parseDouble(objeto.getCodArticuloRed());
-                        System.out.println(obtDigControl(doubleCiudad, doubleTienda, doubleCodArticuloRed));
-                        break;
-                        
-                    case 7:
-                        System.out.println("has escogido la opción aumentar unidades, indica cuantas unidades deseas aumentar");
-                        int cantidadSumar = Integer.parseInt(leerTeclado());
-                        if(cantidadSumar>0){
-                           objeto.setUnidades(cantidadSumar); 
-                           System.out.println("SE HA AUMENTADO ");
-                            System.out.println(" ");
-                        }else{
-                            System.out.println("no puedes sumar numeros negativos");
-                        }
-                        
-                        
-                        break;
-                    case 8:
-                        System.out.println("has escogido la opción disminuir unidades");
-                        if(objeto.getUnidades()==0){
-                            System.out.println("NO HAY UNIDADES QUE RESTAR");
-                        }else{
-                            System.out.println("indica las unidades que deseas restar");
-                            int cantidadRestar = Integer.parseInt(leerTeclado());
-                            if(objeto.getUnidades()<cantidadRestar || cantidadRestar<0){
-                                System.out.println("no se puede realizar");
-                            }else{
-                                objeto.setUnidades(objeto.getUnidades()-cantidadRestar);
-                            }
-                            System.out.println("AHORA tienes estas unidades: " +objeto.getUnidades());
-                        }
-                        break;
-                        
-                    case 9:
-                        System.out.println("has escogido la opción comprobar unidades");
-                        objeto.getUnidades();
-                        if(objeto.getUnidades()==0){
-                            System.out.println("no hay unidades");
-                        }else{
-                            System.out.println("hay: " + objeto.getUnidades());
-                        }
-                        
-                        System.out.println(" ");
-                        break;
-                    case 10:
-                        System.out.println("la información del articulo es: ");
-                        System.out.println(objeto.toString());
-                        System.out.println(" ");
-                        System.out.println("************************************************************************************************************");
-                        System.out.println("**************************************hasta pronto de DECIMAS***********************************************");
-                        System.out.println("************************************************************************************************************");
-                        break;
-                }
-                
-        }while(opcion != 10);  
-        }catch(Exception e){
-            System.out.println("ha ocurrido un error: " + e.getMessage());
-        } //final del catch
+        int opcion = 0;
+        do{
+
+
+              System.out.println("MENU PRINCIPAL");
+              System.out.println("1. Ver el código completo del articulo");
+              System.out.println("2. Ver la descripcion del articulo");
+              System.out.println("3. Ver el codigo de la ciudad");
+              System.out.println("4. Ver el código de la tienda");
+              System.out.println("5. Ver el código del articulo");
+              System.out.println("6. Ver el digito de control");
+              System.out.println("7. Aumentar unidades");
+              System.out.println("8. Decrementar unidades");
+              System.out.println("9. Consultar unidades");
+              System.out.println("10. Salir");
+              System.out.println(" ");
+
+              //opcion = sc.nextInt();
+              opcion = leerOpcion();
+
+              switch(opcion){
+                  case 1:
+                      System.out.println("has escodigo la opcion de mostrar articulo: ");
+                      System.out.println(objeto.getCodArticulo());
+                      System.out.println("");
+                      break;
+                  case 2:
+                      System.out.println("has escodigo la opcion de mostrar la descripción del articulo");
+                      System.out.println(objeto.getDescripcion());
+                      System.out.println(" ");
+                      break;
+
+                  case 3:
+                      System.out.println("has escogido la opcion de mostrar el codigo de ciudad, es:");
+                      System.out.println(objeto.getCiudad());
+                      break;
+                  case 4:
+                      System.out.println("has escogido la opcion de mostrar el codigo de tienda, es:");
+                      System.out.println(objeto.getTienda());
+                      break;
+                  case 5:
+                      System.out.println("has escogido la opcion de mostrar el codigo reducido (6caracteres), es:");
+                      System.out.println(objeto.getCodArticuloRed());
+                      break;
+                  case 6:
+                      System.out.println("has escogido la opcion de mostrar el digito de control, es ");
+                      double doubleCiudad, doubleTienda, doubleCodArticuloRed;
+
+                      doubleCiudad =Double.parseDouble(objeto.getCiudad());
+                      doubleTienda = Double.parseDouble(objeto.getTienda());
+                      doubleCodArticuloRed = Double.parseDouble(objeto.getCodArticuloRed());
+                      System.out.println(obtDigControl(doubleCiudad, doubleTienda, doubleCodArticuloRed));
+                      break;
+
+                  case 7:
+                      System.out.println("has escogido la opción aumentar unidades, indica cuantas unidades deseas aumentar");
+                      int cantidadSumar = Integer.parseInt(leerTeclado());
+                      if(cantidadSumar>0){
+                         objeto.setUnidades(cantidadSumar);
+                         System.out.println("SE HA AUMENTADO ");
+                          System.out.println(" ");
+                      }else{
+                          System.out.println("no puedes sumar numeros negativos");
+                      }
+
+
+                      break;
+                  case 8:
+                      System.out.println("has escogido la opción disminuir unidades");
+                      if(objeto.getUnidades()==0){
+                          System.out.println("NO HAY UNIDADES QUE RESTAR");
+                      }else{
+                          System.out.println("indica las unidades que deseas restar");
+                          int cantidadRestar = Integer.parseInt(leerTeclado());
+                          if(objeto.getUnidades()<cantidadRestar || cantidadRestar<0){
+                              System.out.println("no se puede realizar");
+                          }else{
+                              objeto.setUnidades(objeto.getUnidades()-cantidadRestar);
+                          }
+                          System.out.println("AHORA tienes estas unidades: " +objeto.getUnidades());
+                      }
+                      break;
+
+                  case 9:
+                      System.out.println("has escogido la opción comprobar unidades");
+                      objeto.getUnidades();
+                      if(objeto.getUnidades()==0){
+                          System.out.println("no hay unidades");
+                      }else{
+                          System.out.println("hay: " + objeto.getUnidades());
+                      }
+
+                      System.out.println(" ");
+                      break;
+                  case 10:
+                      System.out.println("la información del articulo es: ");
+                      System.out.println(objeto.toString());
+                      System.out.println(" ");
+                      System.out.println("************************************************************************************************************");
+                      System.out.println("**************************************hasta pronto de DECIMAS***********************************************");
+                      System.out.println("************************************************************************************************************");
+                      break;
+              }
+
+      }while(opcion != 10);
     } //final del metodo mostrarMenu;
     
     //metodo para leer por teclado:
@@ -150,7 +147,7 @@ public class LanzadorTienda {
       //  return contenido;
     //}
     
-    private static String leerTeclado(){
+    private static String leerTeclado() throws ExcepcionesTiendaDeportes{
         Scanner sc = new Scanner(System.in);
         try{
             System.out.println("introduce el dato:");
@@ -236,7 +233,7 @@ public class LanzadorTienda {
         return operacion;
     }
     
-    private static void obtenerDatosArticulo(){
+    private static void obtenerDatosArticulo() throws ExcepcionesTiendaDeportes {
          System.out.println("introduce la descripcion");
     String descripcion = leerTeclado();
     System.out.println("introduce el codigo de articulo: ");
